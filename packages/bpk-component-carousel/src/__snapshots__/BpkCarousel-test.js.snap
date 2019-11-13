@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BpkCarousel should render correctly 1`] = `
+<div
+  className="bpk-carousel"
+>
+  I am an example component.
+</div>
+`;
+
+exports[`BpkCarousel should support arbitrary props 1`] = `
+<div
+  className="bpk-carousel"
+  testID="123"
+>
+  I am an example component.
+</div>
+`;
+
+exports[`BpkCarousel should support custom class names 1`] = `
+<div
+  className="bpk-carousel custom-classname"
+>
+  I am an example component.
+</div>
+`;
