@@ -19,24 +19,66 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { cssModules } from 'bpk-react-utils';
+// import { cssModules } from 'bpk-react-utils';
+import Slider from 'react-slick';
+/* eslint-disable import/no-webpack-loader-syntax, import/no-unresolved  */
+import '!style-loader!css-loader!slick-carousel/slick/slick.css';
+import { withButtonAlignment, withRtlSupport } from 'bpk-component-icon';
+import ArrowLeftIcon from 'bpk-component-icon/sm/long-arrow-left';
+import ArrowRightIcon from 'bpk-component-icon/sm/long-arrow-right';
+// import BpkButton from 'bpk-component-button';
+import BpkCard from 'bpk-component-card';
 
 import STYLES from './BpkCarousel.scss';
 
-const getClassName = cssModules(STYLES);
+// const getClassName = cssModules(STYLES);
+
+const AlignedArrowLeft = withButtonAlignment(withRtlSupport(ArrowLeftIcon));
+const AlignedArrowRight = withButtonAlignment(withRtlSupport(ArrowRightIcon));
 
 export type Props = {
   className: ?string,
 };
-const BpkCarousel = (props: Props) => {
-  const { className, ...rest } = props;
-  const classNames = getClassName('bpk-carousel', className);
 
-  return (
-    <div className={classNames} {...rest}>
-      I am an example component.
-    </div>
-  );
+const cards = [
+  <BpkCard style={{ width: '50px' }}>Lol</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Wow</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Lol 2</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Wow 2</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Lol 3</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Wow 3</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Lol 4</BpkCard>,
+  <BpkCard style={{ width: '50px' }}>Wow 4</BpkCard>,
+];
+
+const BpkCarousel = (props: Props) => {
+  const { className } = props;
+  // const classNames = getClassName('bpk-carousel', className);
+
+  const settings = {
+    adaptiveHeight: false,
+    className: 'center',
+    centerMode: true,
+    dots: false,
+    infinite: false,
+    speed: 0,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    nextArrow: (
+      <div>
+        <AlignedArrowRight className={STYLES['scroll-icon']} />
+      </div>
+    ),
+    prevArrow: (
+      <div>
+        <AlignedArrowLeft className={STYLES['scroll-icon']} />
+      </div>
+    ),
+    slide: 'span',
+    useCSS: false,
+    useTransform: false,
+  };
+  return <Slider {...settings}>{cards}</Slider>;
 };
 
 BpkCarousel.propTypes = {
