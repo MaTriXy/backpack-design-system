@@ -20,8 +20,48 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
+import { BpkGridContainer } from '../bpk-component-grid';
+
 import BpkCarousel from './index';
 
-storiesOf('bpk-component-carousel', module).add('Default', () => (
-  <BpkCarousel />
+const ITEMS = [
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+  {
+    image:
+      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+  },
+];
+
+storiesOf('bpk-component-carousel', module).add('Default carousel', () => (
+  <BpkGridContainer>
+    <BpkCarousel
+      config={{
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        dots: true,
+      }}
+      content={{
+        items: ITEMS,
+      }}
+    />
+  </BpkGridContainer>
 ));
