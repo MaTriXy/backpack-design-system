@@ -1,0 +1,38 @@
+@import '~bpk-mixins';
+
+/* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-element-no-unknown */
+:global {
+  .slick-slider {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+  }
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slick-current .item-image {
+    border-top-left-radius: $bpk-border-radius-xs;
+    border-bottom-left-radius: $bpk-border-radius-xs;
+  }
+
+  .last-image {
+    border-top-right-radius: $bpk-border-radius-xs;
+    border-bottom-right-radius: $bpk-border-radius-xs;
+  }
+
+  .slick-dots {
+    display: flex !important; /* stylelint-disable-line declaration-no-important */
+    margin: auto 0;
+    padding-top: $bpk-spacing-md;
+    padding-left: 0;
+    justify-content: center;
+    cursor: pointer;
+    list-style-type: none;
+
+    li {
+      padding: 0 $bpk-spacing-sm / 2;
+    }
+  }
+}
