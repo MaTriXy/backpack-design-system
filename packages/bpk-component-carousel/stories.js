@@ -26,29 +26,15 @@ import BpkCarousel from './index';
 
 const ITEMS = [
   {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
+    body:
+      'card one. Bacon ipsum dolor amet picanha tri-tip ham hock pork chop flank frankfurter salami chislic short loin ham ribeye beef ribs ball tip hamburger. Meatball tail prosciutto leberkas t-bone tongue kevin ham doner bresaola landjaeger sirloin filet mignon shank. Flank pastrami tri-tip short loin kevin short ribs bresaola tail. Pork belly ribeye turducken doner, meatball chicken jowl corned beef. Bacon ipsum dolor amet picanha tri-tip ham hock pork chop flank frankfurter salami chislic short loin ham ribeye beef ribs ball tip hamburger. Meatball tail prosciutto leberkas t-bone tongue kevin ham doner bresaola landjaeger sirloin filet mignon shank. Flank pastrami tri-tip short loin kevin short ribs bresaola tail. Pork belly ribeye turducken doner, meatball chicken jowl corned beef.',
   },
-  {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
-  },
-  {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
-  },
-  {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
-  },
-  {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
-  },
-  {
-    image:
-      'https://content.skyscnr.com/6bf5a29ce130132f28e912434f295b76/canada-lake-feb.jpg?crop=2000px:559px&quality=80',
-  },
+  { body: 'card two' },
+  { body: 'card three' },
+  { body: 'card four' },
+  { body: 'card five' },
+  { body: 'card six' },
+  { body: 'card seven' },
 ];
 
 storiesOf('bpk-component-carousel', module).add('Default carousel', () => (

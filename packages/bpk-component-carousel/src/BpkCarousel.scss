@@ -15,74 +15,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-@import '~bpk-mixins/index';
-
-@mixin hover-border {
-  border: 2 * $bpk-one-pixel-rem solid $bpk-color-white;
-  border-radius: $bpk-border-radius-sm;
-
-  &:hover {
-    border-color: $bpk-color-sky-blue;
-  }
-}
+@import '~bpk-mixins';
 
 /* stylelint-disable selector-pseudo-class-no-unknown, selector-pseudo-element-no-unknown */
 :global {
   .slick-slider {
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    width: 1167px;
+  }
+
+  .slick-list {
+    overflow: hidden;
+  }
+
+  .slick-track {
+    display: inline-flex;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
   }
 
   .slick-slide {
-    width: 50px;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.1rem;
   }
 
-  .slick-arrow.slick-prev,
-  .slick-arrow.slick-next {
-    background-color: $bpk-color-white;
-
-    @include hover-border;
-  }
-
-  .slick-arrow {
-    position: absolute;
-    display: flex;
-    z-index: 1;
-    width: 20 * $bpk-one-pixel-rem;
-    min-height: 100%;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: $bpk-border-radius-sm;
-    outline: none;
-    background-color: $bpk-color-white;
-
-    > svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      fill: $bpk-color-sky-blue;
-    }
-  }
-
-  .slick-arrow.slick-prev:hover,
-  .slick-arrow.slick-next:hover {
-    background-color: $bpk-color-white;
-  }
-
-  .slick-arrow.slick-prev::before,
-  .slick-arrow.slick-next::before {
-    content: '';
-  }
-
-  .slick-arrow.slick-next {
-    right: -22 * $bpk-one-pixel-rem;
+  .slick-current {
+    border-top-left-radius: $bpk-border-radius-xs;
+    border-bottom-left-radius: $bpk-border-radius-xs;
   }
 }
-/* stylelint-enable selector-pseudo-class-no-unknown, selector-pseudo-element-no-unknown */
-
-.scroll-icon {
-  fill: $bpk-color-sky-gray-tint-04;
-}
-

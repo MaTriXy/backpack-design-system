@@ -20,22 +20,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Slider from 'react-slick';
-import styled from 'styled-components';
 import { withButtonAlignment, withRtlSupport } from 'bpk-component-icon';
 import ArrowLeftIcon from 'bpk-component-icon/sm/long-arrow-left';
 import ArrowRightIcon from 'bpk-component-icon/sm/long-arrow-right';
 import BpkCard from 'bpk-component-card';
 import BpkButton from 'bpk-component-button';
-import {
-  borderSizeSm,
-  buttonPaddingY,
-  colorWhite,
-} from 'bpk-tokens/tokens/base.es6';
+import { buttonPaddingY, colorWhite } from 'bpk-tokens/tokens/base.es6';
 
-import { getIntegerValueFromStyle } from '../utils/utils';
-
-import './Carousel.scss';
-import './slick.css';
+import './BpkCarousel.scss';
 
 const AlignedArrowLeft = withButtonAlignment(withRtlSupport(ArrowLeftIcon));
 const AlignedArrowRight = withButtonAlignment(withRtlSupport(ArrowRightIcon));
@@ -44,41 +36,11 @@ class BpkCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeIndex: 0,
+      leftDisabled: false,
+      rightDisabled: false,
     };
 
-    this.afterChangeHandler = this.afterChangeHandler.bind(this);
     this.renderItem = this.renderItem.bind(this);
-    const { itemHeight, itemWidth, itemSpacing } = props.styling;
-
-    // Styled components must be initialised here to avoid a full re-render on state change
-    this.StyledSlider = styled(Slider)`
-      .slick-slider {
-        display: flex;
-        flex-direction: row;
-      }
-
-      .slick-list {
-        width: ${getIntegerValueFromStyle(itemWidth || '21.87rem') * 3 +
-          getIntegerValueFromStyle(itemSpacing || buttonPaddingY) * 3}rem;
-        margin: auto;
-        overflow: hidden;
-      }
-
-      .slick-track {
-        display: flex;
-      }
-
-      .slick-slide {
-        padding-right: ${itemSpacing || buttonPaddingY};
-        padding-bottom: ${itemSpacing || buttonPaddingY};
-        padding-left: ${itemSpacing || buttonPaddingY};
-      }
-
-      .slick-slide > div {
-        width: 333px;
-      }
-    `;
   }
 
   // Disable window scrolling while swiping horizontally
@@ -121,16 +83,12 @@ class BpkCarousel extends Component {
     }
   }
 
-  afterChangeHandler(newActiveIndex) {
-    this.setState({
-      activeIndex: newActiveIndex,
-    });
-  }
+  // afterChangeHandler(newActiveIndex) {
+  // }
 
   eventHandler(eventName, index) {
     return () => {
       this.props.eventHandler(eventName, {
-        title: this.props.content.items[index].title,
         index,
       });
     };
@@ -139,28 +97,15 @@ class BpkCarousel extends Component {
   renderItem(item, idx) {
     return (
       <div key={idx}>
-        <div
-          className={`${
-            this.state.activeIndex + this.props.config.slidesToShow === idx + 1
-              ? 'last-image'
-              : ''
-          }`}
-          data-pagespeed-no-transform=""
-        >
-          <BpkCard style={{ height: '250px', border: 'black' }} />
+        <div>
+          <BpkCard style={{ width: '333px' }}> {item.body}</BpkCard>
         </div>
       </div>
     );
   }
 
   render() {
-    const {
-      dots,
-      arrows,
-      slidesToShow,
-      slidesToScroll,
-      variableWidth,
-    } = this.props.config;
+    const { slidesToShow, slidesToScroll } = this.props.config;
 
     const settings = {
       slidesToShow,
@@ -169,30 +114,50 @@ class BpkCarousel extends Component {
       touchThreshold: 25,
       nextArrow: (
         <div>
-          <BpkButton iconOnly>
+          <BpkButton iconOnly disabled={this.state.rightDisabled}>
             <AlignedArrowRight />
           </BpkButton>
         </div>
       ),
       prevArrow: (
         <div>
-          <BpkButton iconOnly>
+          <BpkButton iconOnly disabled={this.state.leftDisabled}>
             <AlignedArrowLeft />
           </BpkButton>
         </div>
       ),
-      variableWidth,
+      variableWidth: true,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+          },
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          },
+        },
+      ],
     };
 
     return (
       <section className={this.props.config.className}>
-        <div className="Carousel">
-          <this.StyledSlider
-            {...settings}
-            afterChange={this.afterChangeHandler}
-          >
+        <div>
+          <Slider {...settings}>
             {this.props.content.items.map(this.renderItem)}
-          </this.StyledSlider>
+          </Slider>
         </div>
       </section>
     );
@@ -204,7 +169,6 @@ BpkCarousel.propTypes = {
   config: PropTypes.shape({
     arrows: PropTypes.bool,
     className: PropTypes.string,
-    dots: PropTypes.bool,
     slidesToShow: PropTypes.number,
     slidesToScroll: PropTypes.number,
     variableWidth: PropTypes.bool,
@@ -212,11 +176,7 @@ BpkCarousel.propTypes = {
   content: PropTypes.shape({
     items: PropTypes.arrayOf(
       PropTypes.shape({
-        image: PropTypes.string.isRequired,
-        title: PropTypes.string.isRequired,
-        copy: PropTypes.string.isRequired,
-        link: PropTypes.string.isRequired,
-        callToAction: PropTypes.string.isRequired,
+        body: PropTypes.string.isRequired,
       }),
     ),
   }),
@@ -237,7 +197,6 @@ BpkCarousel.defaultProps = {
   config: {
     arrows: true,
     className: '',
-    dots: true,
     slidesToShow: 3,
     slidesToScroll: 1,
     variableWidth: false,
