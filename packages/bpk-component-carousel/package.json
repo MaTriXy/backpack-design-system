@@ -1,7 +1,6 @@
 {
   "name": "bpk-component-carousel",
-  "private": true,
-  "version": "0.0.27",
+  "version": "0.0.1",
   "description": "Backpack carousel component.",
   "main": "index.js",
   "repository": {
